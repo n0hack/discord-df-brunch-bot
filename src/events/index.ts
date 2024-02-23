@@ -1,5 +1,6 @@
 import { Client, GuildMember, Message } from 'discord.js';
 import { getItemGradesMessage } from '../utils/itemGrade';
+import { getKST } from '../utils/date';
 
 /**
  * 디스코드 봇 로그인 이벤트
@@ -26,9 +27,9 @@ export const notifyTodayGrade = (client: Client) => {
   const channel = client.channels.cache.find((ch) => ch.type === 0 && ch.name === '오늘의-등급');
 
   setInterval(async () => {
-    const now = new Date();
+    const kst = getKST();
 
-    if (now.getHours() + 9 === 24 && now.getMinutes() === 0 && now.getSeconds() === 0) {
+    if (kst.getHours() === 0 && kst.getMinutes() === 0 && kst.getSeconds() === 0) {
       const todayGrade = await getItemGradesMessage();
       (channel as any).send(todayGrade);
     }

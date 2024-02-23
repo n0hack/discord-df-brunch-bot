@@ -1,5 +1,6 @@
 import { ItemStatusName, getItemDetail, getItemSalesDetail } from '../api/item';
 import items from '../data/gradeItems';
+import { getKST } from './date';
 
 type ConvertedItem = {
   Id: string;
@@ -70,10 +71,10 @@ export const getItemGradesMessage = async () => {
   }
 
   // 날짜 계산
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = `${now.getMonth() + 1}`.padStart(2, '0');
-  const date = `${now.getDate()}`.padStart(2, '0');
+  const kst = getKST();
+  const year = kst.getFullYear();
+  const month = `${kst.getMonth() + 1}`.padStart(2, '0');
+  const date = `${kst.getDate()}`.padStart(2, '0');
 
   // 등급과 퍼센트는 첫 번째 아이템을 기준으로 표기
   let message = `## ${year}년 ${month}월 ${date}일 장비 등급은 ${itemList[0].등급}(${itemList[0].퍼센트}%)입니다!\n\n`;
