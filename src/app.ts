@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits, IntentsBitField } from 'discord.js';
 import 'dotenv/config';
 import * as Event from './events';
+import { healthCheck } from './healthCheck';
 
 const initialize = async () => {
   const client = new Client({
@@ -21,4 +22,5 @@ const initialize = async () => {
   await client.login(process.env.DISCORD_TOKEN);
 };
 
+healthCheck.listen(8080);
 initialize();
