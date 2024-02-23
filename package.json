@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "run:prod": "pnpm build && node build/app.js",
+    "build": "npx tsc",
+    "run:prod": "npm run build && node build/app.js",
     "run:dev": "nodemon --watch '*.ts' --exec 'ts-node' src/app.ts"
   },
   "keywords": [],
