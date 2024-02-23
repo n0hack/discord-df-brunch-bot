@@ -27,9 +27,8 @@ export const notifyTodayGrade = (client: Client) => {
 
   setInterval(async () => {
     const now = new Date();
-    console.log(now, now.getHours(), now.getMinutes(), now.getSeconds());
 
-    if (now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0) {
+    if (now.getHours() + 9 === 24 && now.getMinutes() === 0 && now.getSeconds() === 0) {
       const todayGrade = await getItemGradesMessage();
       (channel as any).send(todayGrade);
     }
